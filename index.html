@@ -49,7 +49,7 @@
           <form>
           <div class="form-group">
         <label for="exampleFormControlTextarea1">Review Spot</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Executive WOO review WOO</textarea>
+        <textarea class="form-control" id="ReviewBox" rows="3">Executive WOO review WOO</textarea>
               </div>
               </form>
      
@@ -231,9 +231,9 @@ var _htmlToJSON = function(index){
     var _data = _arr.split("//");
     
     _obj = {
-         SQuestions     : _data[1]
-        ,SAnswers     : _data[2]
-        ,SComment     : _data[3]
+         SQuestions     : _data[5]
+        ,SAnswers     : _data[6]
+        ,SComment     : _data[7]
     };
     
     _jsonData.push(_obj);
@@ -276,12 +276,12 @@ target.forEach(function(object) {
     tr.innerHTML = '<td>' + object.SQuestions + '</td>' +
         '<td>' + object.SAnswers + '</td>' +
         '<td>' + object.SComment + '</td>' +
-        '<td> <button id="BRed' + identifier +'">Concerning</button><button id="BAcceptable' + identifier +'">Acceptable</button><button id="BGood' + identifier +'">Good</button> </td>' +
+        '<td> <button id="Red' + identifier + '" value="' + identifier +'" onclick="PopulateBox(this.id)">Concerning</button><button id="Acceptable' + identifier + '" value="' + identifier +'" onclick="PopulateBox(this.id)">Acceptable</button><button id="Good' + identifier + '"  value="' + identifier +'"onclick="PopulateBox(this.id)" >Good</button> </td>' +
         '<td> Push </td>' +
-        '<td id="Red'+ identifier +'">' + object.REDFLAG + '</td>' +
-        '<td id="Acceptable'+ identifier +'">' + object.KindAcceptable + '</td>'+
-        '<td id="Good'+ identifier +'">' + object.KindGood  + '</td>'+
-        '<td id="Text'+ identifier +'"> There will be a textbox here.</td>';
+        '<td id="RRed'+ identifier +'">' + object.REDFLAG + '</td>' +
+        '<td id="RAcceptable'+ identifier +'">' + object.KindBad + '</td>'+
+        '<td id="RGood'+ identifier +'">' + object.KindAcceptable  + '</td>'+
+        '<td id="RText'+ identifier +'"> There will be a textbox here.</td>';
         console.log(identifier)
         identifier++
     table.appendChild(tr);
@@ -291,7 +291,18 @@ target.forEach(function(object) {
 </script>
 <!-- This is the final piece of script, allows population from the sheet above into the text area. -->
 <script>
-    
+    function PopulateBox(id) {
+    ButtonName = id;
+    ButtonValue = document.getElementById(ButtonName).value
+    console.log('Respective text field should be R' + ButtonName)
+    let Addative = document.getElementById("R"+ButtonName).textContent;
+    document.getElementById("ReviewBox").innerHTML += Addative + '\r\n';
+}
 </script>
+
+
+
+
+
 
 
